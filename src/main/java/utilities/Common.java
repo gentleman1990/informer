@@ -1,6 +1,6 @@
 package utilities;
 
-import requester.MyFrame;
+import gui.MyFrame;
 import java.awt.*;
 
 public class Common {
@@ -17,4 +17,6 @@ public class Common {
             }
         });
     }
+
+
 }
