@@ -25,7 +25,6 @@ public class TycoonRequester {
         this.phpSessionId = phpSessionId;
     }
 
-    // HTTP POST request
     public String sendPost() throws Exception {
 
         String url = "http://s6.cargotycoon.pl/ajax/1/zlecenia_szukaj.php";
@@ -33,7 +32,6 @@ public class TycoonRequester {
         DefaultHttpClient client = new DefaultHttpClient();
         HttpPost post = new HttpPost(url);
 
-        // add header
         post.setHeader("User-Agent", USER_AGENT);
         post.setHeader("Content-type", "application/x-www-form-urlencoded");
 

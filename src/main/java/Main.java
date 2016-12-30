@@ -1,4 +1,3 @@
-import static utilities.Common.activatePopUp;
 import static utilities.CookieHandlerFromBrowser.getCookieUsingCookieHandler;
 import static utilities.FieldFilters.filterFields;
 import static utilities.ResponseParser.parseResponseForBuyers;
@@ -6,12 +5,9 @@ import static utilities.ResponseParser.parseResponseForProducers;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
-import orders.Order;
-import requester.impl.ProducresRequester;
 import requester.impl.RequsterImpl;
 import stage.Buyer;
 import stage.Producer;
-import utilities.FieldFilters;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -28,61 +24,15 @@ public class Main {
         try {
             Main main = new Main();
             new JCommander(main, args);
-            //main.runTycoonRequester();
-            //main.runProducersRequester();
+            main.validate();
+
             main.runRequester();
-            //main.getCookieUsingCookieHandler();
+
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    public void runTycoonRequester() throws Exception {
-        //System.out.printf("%s %s \n", phpSessionId, orderType);
-
-        while (true) {
-            //for (int i = 0; i < 5; i++) {
-                //Order c = new Order(phpSessionId);
-               // final String response = c.callRefreshOrder();
-//                if (response.contains(orderType)) {
-//                    System.out.println("Znleziono zlecenie dla początkujących!");
-//                    activatePopUp();
-//
-//                }
-//
-//                Random rand = new Random();
-//                final int randomInt = rand.nextInt(90) + 120;
-//                System.out.println("Waiting time: " + randomInt + "second ...");
-//                Thread.sleep(randomInt * 1000);
-            //}
-        }
-    }
-
-//    public void runProducersRequester() throws Exception {
-//        System.out.printf("%s %s \n", phpSessionId, orderType);
-//        List<String> responses = new ArrayList<String>();
-//        String phpsid = getCookieUsingCookieHandler();
-//        try {
-//            for (int i = 0; i < 6; i++) {
-//                Order c = new Order(phpSessionId);
-//                //ProducresRequester pr = new ProducresRequester(phpSessionId);
-//                final String response = new ProducresRequester().sendPost(i,phpsid);
-//                responses.add(response);
-//
-//                Random rand = new Random();
-//                final int randomInt = rand.nextInt(15) + 15;
-//                //final int randomInt = rand.nextInt(5)+10;
-//                System.out.println("Waiting time: " + randomInt + "second ...");
-////                Thread.sleep(randomInt * 1000);
-//            }
-//        }
-//        catch (Exception e) {
-//            e.printStackTrace();
-//            printResponses(responses);
-//        }
-//        printResponses(responses);
-//    }
 
     public void runRequester() throws Exception {
         System.out.printf("Start sending requests ... ");
@@ -95,7 +45,6 @@ public class Main {
 
                 Random rand = new Random();
                 final int randomInt = rand.nextInt(15) + 15;
-                //final int randomInt = rand.nextInt(5)+10;
                 System.out.println("Waiting time: " + randomInt + "second ...");
                 Thread.sleep(randomInt * 1000);
             }
@@ -125,6 +74,13 @@ public class Main {
     private void printBuyersOnList(final List<Buyer> producersList) {
         for(Buyer b : producersList){
             System.out.println(b.getTowar() + ";" + b.getTypMagazynu() + ";" + b.getTermin() + ";" + b.getIlosc() + ";" + b.getZaplata() + ";" + b.getCenaJednostkowa() + ";" + b.getKara() + ";" + b.getMiasto() + ";" + b.getOdleglosc() );
+        }
+    }
+
+    private void validate(){
+        if((orderType.equals("buyer") && !requestUrl.contains("kupcow")) ||(orderType.equals("producer") && !requestUrl.contains("producentow"))){
+            System.out.println("Please check that your request url is correct'");
+            System.exit(1);
         }
     }
 }

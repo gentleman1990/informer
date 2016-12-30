@@ -1,10 +1,5 @@
 package stage;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Buyer {
     String towar;
     String typMagazynu;

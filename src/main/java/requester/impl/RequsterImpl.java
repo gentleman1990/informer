@@ -19,25 +19,11 @@ public class RequsterImpl implements Requester {
     @Override
     public String sendPost(String url, List<NameValuePair> urlParameters, String phpSID) {
 
-        //String url = "http://s6.cargotycoon.pl/ajax/2/wybierz_producentow.php";
-        //String url = "http://s6.cargotycoon.pl/ajax/2/wybierz_kupcow.php";
         DefaultHttpClient client = new DefaultHttpClient();
         HttpPost post = new HttpPost(url);
 
-        // add header
         post.setHeader("User-Agent", USER_AGENT);
         post.setHeader("Content-type", "application/x-www-form-urlencoded");
-
-//            List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
-//            urlParameters.add(new BasicNameValuePair("towar", "Wszystkie"));
-//            urlParameters.add(new BasicNameValuePair("zysk_min", ""));
-//            urlParameters.add(new BasicNameValuePair("zysk_max", ""));
-//            urlParameters.add(new BasicNameValuePair("miasto", ""));
-//            urlParameters.add(new BasicNameValuePair("garaz_miasto", ""));
-//            urlParameters.add(new BasicNameValuePair("rodzaj_magazyn","Wszystkie"));
-//            urlParameters.add(new BasicNameValuePair("sortowanie", "ilosc_malejaco"));
-//            urlParameters.add(new BasicNameValuePair("typ_samochodu", "3"));
-//            urlParameters.add(new BasicNameValuePair("page", Integer.toString(pageNumber)));
 
         try {
             post.setEntity(new UrlEncodedFormEntity(urlParameters));
